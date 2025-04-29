@@ -1,30 +1,14 @@
+const { userRouter } = require("./routes/user");
+const { courseRouter } = require("./routes/course")
+const {adminRouter}= require("./routes/admin")
+ 
 const express = require("express")
 const app = express();
-
-app.post("/user/signin", function(req,res){
-    
-})
-app.post("/user/signup", function(req,res){
-
-})
-// which courses the user is opting to buy 
-app.post("/course/purchase", function(req,res){
-
-})
-//displays the purchased courses of user
-app.get("/user/purchases", function(req,res){
-
-})
-// gets all available courses on store
-app.get("purchases", function(req,res){
-
-})
+//structured routing
+app.use("/api/v1/user",userRouter);
+app.use("/api/v1/course",courseRouter);
+app.use("/api/v1/admin", adminRouter);
 
 
 
-
-
-
-
-
-app.listen(3000);
+app.listen(3000);//port-3000  
