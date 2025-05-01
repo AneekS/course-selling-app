@@ -52,6 +52,8 @@ adminRouter.post("/signin", async function(req, res) {
 })
 
 adminRouter.post("/course", adminMiddleware, async function(req, res) {
+    // after the authentication admin middleware is passed.
+    //extract out the userId of the main admin : from req.userId.header passed down via the admin middleware afetr checking authentication. 
     const adminId = req.userId;
 
     const { title, description, imageUrl, price } = req.body;
@@ -72,6 +74,8 @@ adminRouter.post("/course", adminMiddleware, async function(req, res) {
 })
 
 adminRouter.put("/course", adminMiddleware, async function(req, res) {
+    // middleware checks authenticated ot not
+    // extracts out the id from the token
     const adminId = req.userId;
 
     const { title, description, imageUrl, price, courseId } = req.body;
@@ -92,7 +96,7 @@ adminRouter.put("/course", adminMiddleware, async function(req, res) {
         courseId: course._id
     })
 })
-
+// courses created by the particular admin
 adminRouter.get("/course/bulk", adminMiddleware,async function(req, res) {
     const adminId = req.userId;
 
